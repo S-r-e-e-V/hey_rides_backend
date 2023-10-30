@@ -30,7 +30,7 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 // cors
 // const domainsFromEnv = process.env.CORS_DOMAINS || ""
 // const whitelist = domainsFromEnv.split(",").map(item => item.trim())
-const whitelist = ["http://localhost:3000"];
+const whitelist = ["http://localhost:3000", "https://heyrides.netlify.app"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
