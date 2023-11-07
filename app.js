@@ -7,6 +7,7 @@ const {
   locationRoute,
   bookingRoute,
   PriceRoute,
+  driverRoute,
 } = require("./routes");
 require("dotenv").config();
 const cors = require("cors");
@@ -49,6 +50,7 @@ app.use("/city", cityRoute);
 app.use("/location", locationRoute);
 app.use("/price", PriceRoute);
 app.use("/booking", bookingRoute);
+app.use("/driver", driverRoute);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

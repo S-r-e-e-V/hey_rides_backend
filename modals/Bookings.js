@@ -11,15 +11,13 @@ var bookings = new mongoose.Schema(
       location_id: { type: mongoose.Schema.Types.ObjectId, ref: "Locations" },
       city_id: { type: mongoose.Schema.Types.ObjectId, ref: "Cities" },
     },
+    driver: { type: mongoose.Schema.Types.ObjectId, ref: "Driver" },
     price: {
       type: Number,
       required: true,
     },
+    status: { type: String, default: "Pending", required: true },
     ScheduledToTime: { type: Date, required: true },
-    isCancelled: {
-      type: Boolean,
-      default: false,
-    },
   },
   {
     timestamps: true,

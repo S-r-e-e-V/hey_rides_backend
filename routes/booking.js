@@ -5,7 +5,9 @@ const Authenticate = require("../middlewire/authenticate");
 
 router.post("/create", Authenticate, BookingController.createBooking);
 router.delete("/cancel/:id", Authenticate, BookingController.cancelBooking);
-router.get("/bookings", BookingController.getBookings);
-router.get("/:id", BookingController.getBooking);
+router.get("/bookings", Authenticate, BookingController.getBookings);
+router.get("/:id", Authenticate, BookingController.getBooking);
+router.get("/user/bookings", Authenticate, BookingController.getUserBookings);
+router.put("/driver/update/:id", Authenticate, BookingController.updateDriver);
 
 module.exports = router;
