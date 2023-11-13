@@ -102,7 +102,7 @@ const cancelBooking = async (req, res, next) => {
     const booking = await Bookings.updateOne(
       { _id: req.params.id },
       {
-        status: "Cancelled",
+        status: "Cancelled by Admin",
       }
     );
     if (booking) {
@@ -113,6 +113,24 @@ const cancelBooking = async (req, res, next) => {
     next(error);
   }
 };
+
+const cancelBookingByUser = async (req, res, next) => {
+  try {
+    const booking = await Bookings.updateOne(
+      { _id: req.params.id },
+      {
+        status: "Cancelled by User",
+      }
+    );
+    if (booking) {
+      res.status(200).json({ message: "Booking cancelled Successfully" });
+    }
+  } catch (error) {
+    error.status = 400;
+    next(error);
+  }
+};
+
 module.exports = {
   createBooking,
   getBookings,
@@ -120,4 +138,5 @@ module.exports = {
   cancelBooking,
   getUserBookings,
   updateDriver,
+  cancelBookingByUser,
 };
