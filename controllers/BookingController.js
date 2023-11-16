@@ -29,7 +29,6 @@ const getBooking = async (req, res, next) => {
   try {
     const response = await Bookings.findOne({
       _id: req.params.id,
-      isCancelled: false,
     })
       .populate("from.location_id", "city location")
       .populate("to.location_id", "city location")
