@@ -45,8 +45,21 @@ const getBooking = async (req, res, next) => {
 };
 
 const getBookings = async (req, res, next) => {
+  var date = new Date();
+  var today = new Date(date.toDateString());
+  var endDate = new Date(date.setMonth(today.getMonth() + 3));
   try {
-    const response = await Bookings.find()
+    const response = await Bookings.find({
+      $and: [
+        // { driver: req.body.driver },
+        {
+          ScheduledToTime: {
+            $lte: req.body.endTime ?? new Date(endDate.toDateString()),
+            $gte: req.body.startTime ?? today,
+          },
+        },
+      ],
+    })
       .populate("from.location_id", "city location")
       .populate("to.location_id", "city location")
       .populate("from.city_id", "city province country")

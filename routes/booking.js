@@ -10,7 +10,7 @@ router.delete(
   Authenticate,
   BookingController.cancelBookingByUser
 );
-router.get("/bookings", Authenticate, BookingController.getBookings);
+router.post("/bookings", Authenticate, BookingController.getBookings);
 router.get("/:id", Authenticate, BookingController.getBooking);
 router.get("/user/bookings", Authenticate, BookingController.getUserBookings);
 router.put("/driver/update/:id", Authenticate, BookingController.updateDriver);

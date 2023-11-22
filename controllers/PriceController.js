@@ -68,7 +68,7 @@ const updatePrice = async (req, res, next) => {
         from: req.body.from,
         to: req.body.to,
         price: req.body.price,
-        luggage: req.body.price,
+        luggage: req.body.luggage,
       }
     );
     res.status(200).json(response);
