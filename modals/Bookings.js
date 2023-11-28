@@ -6,10 +6,12 @@ var bookings = new mongoose.Schema(
     from: {
       location_id: { type: mongoose.Schema.Types.ObjectId, ref: "Locations" },
       city_id: { type: mongoose.Schema.Types.ObjectId, ref: "Cities" },
+      customLocation: { type: String, default: null },
     },
     to: {
       location_id: { type: mongoose.Schema.Types.ObjectId, ref: "Locations" },
       city_id: { type: mongoose.Schema.Types.ObjectId, ref: "Cities" },
+      customLocation: { type: String, default: null },
     },
     driver: { type: mongoose.Schema.Types.ObjectId, ref: "Driver" },
     price: {
