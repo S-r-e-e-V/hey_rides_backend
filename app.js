@@ -19,7 +19,7 @@ const cors = require("cors");
 
 const app = express();
 
-const uri = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_cluster}/HeyRides?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://heyrides06:LSuEV7Ywm9308xn1@cluster0.ac7fdu0.mongodb.net/HeyRides?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
