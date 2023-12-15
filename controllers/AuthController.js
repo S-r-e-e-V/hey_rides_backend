@@ -83,7 +83,7 @@ const forgotPassword = (req, res, next) => {
         const token = jwt.sign(payload, SECRET + user._id, {
           expiresIn: "15m",
         });
-        const link = `http://localhost:3000/reset-password/${user._id}/${token}`;
+        const link = `https://heyrides.ca/reset-password/${user._id}/${token}`;
 
         // email
 
