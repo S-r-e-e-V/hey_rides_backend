@@ -2,12 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const {
   authRoute,
-  diaryRoute,
   cityRoute,
   locationRoute,
   bookingRoute,
   PriceRoute,
   driverRoute,
+  contactusRoute,
 } = require("./routes");
 require("dotenv").config();
 const cors = require("cors");
@@ -31,7 +31,12 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 // cors
 // const domainsFromEnv = process.env.CORS_DOMAINS || ""
 // const whitelist = domainsFromEnv.split(",").map(item => item.trim())
-const whitelist = ["http://localhost:3000", "https://heyrides.netlify.app"];
+const whitelist = [
+  "http://localhost:3000",
+  "https://heyrides.netlify.app",
+  "www.heyrides.ca",
+  "heyrides.ca",
+];
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
@@ -51,6 +56,7 @@ app.use("/location", locationRoute);
 app.use("/price", PriceRoute);
 app.use("/booking", bookingRoute);
 app.use("/driver", driverRoute);
+app.use("/contactus", contactusRoute);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");

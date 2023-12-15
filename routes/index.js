@@ -4,6 +4,7 @@ const locationRoute = require("./location");
 const bookingRoute = require("./booking");
 const driverRoute = require("./driver");
 const authRoute = require("./auth");
+const contactusRoute = require("./contactus");
 
 module.exports = {
   authRoute,
@@ -12,4 +13,5 @@ module.exports = {
   bookingRoute,
   PriceRoute,
   driverRoute,
+  contactusRoute,
 };

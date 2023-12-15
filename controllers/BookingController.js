@@ -1,6 +1,7 @@
 const Bookings = require("../modals/Bookings");
 const Cities = require("../modals/Cities");
 const Locations = require("../modals/Locations");
+const sendMail = require("../utils/nodemailer");
 
 const createBooking = async (req, res, next) => {
   try {
@@ -11,6 +12,15 @@ const createBooking = async (req, res, next) => {
     booking
       .save()
       .then((response) => {
+        const link = "https://heyrides.ca/my-bookings";
+        const mailOptions = {
+          from: "heyrides06@gmail.com",
+          to: req.user.email,
+          subject: "Booking Confirmation from Heyrides",
+          text: `Your booking has been confirmed. Please click on the followinglink to access booking details. ${link}`,
+        };
+
+        sendMail(mailOptions);
         res.status(200).json({ message: "Booking created successfully" });
       })
       .catch((err) => {
