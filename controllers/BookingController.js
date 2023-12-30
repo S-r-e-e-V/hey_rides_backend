@@ -44,7 +44,7 @@ const getBooking = async (req, res, next) => {
       .populate("to.location_id", "city location")
       .populate("from.city_id", "city province country")
       .populate("to.city_id", "city province country")
-      .populate("user_id", "name")
+      .populate("user_id", "name phone")
       .populate("driver");
     if (response) res.status(200).json(response);
     else res.status(400).json({ error: { message: "Data not found" } });
@@ -74,7 +74,7 @@ const getBookings = async (req, res, next) => {
       .populate("to.location_id", "city location")
       .populate("from.city_id", "city province country")
       .populate("to.city_id", "city province country")
-      .populate("user_id", "name")
+      .populate("user_id", "name phone")
       .populate("driver");
 
     if (response) res.status(200).json(response);
@@ -92,7 +92,7 @@ const getUserBookings = async (req, res, next) => {
       .populate("to.location_id", "city location")
       .populate("from.city_id", "city province country")
       .populate("to.city_id", "city province country")
-      .populate("user_id", "name")
+      .populate("user_id", "name phone")
       .populate("driver");
 
     if (response) res.status(200).json(response);
