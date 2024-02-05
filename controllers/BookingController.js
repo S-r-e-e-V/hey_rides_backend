@@ -58,18 +58,18 @@ const getBookings = async (req, res, next) => {
   var date = new Date();
   var today = new Date(date.toDateString());
   var endDate = new Date(date.setMonth(today.getMonth() + 3));
+  var isPending = req.body.isPending;
   try {
-    const response = await Bookings.find({
-      $and: [
-        // { driver: req.body.driver },
-        {
-          ScheduledToTime: {
-            $lte: req.body.endTime ?? new Date(endDate.toDateString()),
-            $gte: req.body.startTime ?? today,
-          },
-        },
-      ],
-    })
+    const response = await Bookings.find(
+      !isPending
+        ? {
+            ScheduledToTime: {
+              $lte: req.body.endTime ?? new Date(endDate.toDateString()),
+              $gte: req.body.startTime ?? today,
+            },
+          }
+        : { status: "Pending" }
+    )
       .populate("from.location_id", "city location")
       .populate("to.location_id", "city location")
       .populate("from.city_id", "city province country")
