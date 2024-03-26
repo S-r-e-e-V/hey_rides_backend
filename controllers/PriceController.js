@@ -68,6 +68,7 @@ const updatePrice = async (req, res, next) => {
       {
         from: req.body.from,
         to: req.body.to,
+        travelTime: req.body.travelTime,
         price: req.body.price,
         luggage: req.body.luggage,
       }
