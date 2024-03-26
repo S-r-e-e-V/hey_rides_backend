@@ -70,6 +70,7 @@ const getBookings = async (req, res, next) => {
           }
         : { status: "Pending" }
     )
+      .sort({ createdAt: -1 })
       .populate("from.location_id", "city location")
       .populate("to.location_id", "city location")
       .populate("from.city_id", "city province country")

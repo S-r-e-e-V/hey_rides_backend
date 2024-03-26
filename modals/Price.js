@@ -4,6 +4,7 @@ var price = new mongoose.Schema(
   {
     from: { type: mongoose.Schema.Types.ObjectId, ref: "Cities" },
     to: { type: mongoose.Schema.Types.ObjectId, ref: "Cities" },
+    travelTime: { type: Number, required: true, default: 4 },
     price: {
       type: Number,
       required: true,

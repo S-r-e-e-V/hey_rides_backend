@@ -7,6 +7,7 @@ const addPrice = async (req, res, next) => {
     const price = new Price({
       from: req.body.from,
       to: req.body.to,
+      travelTime: req.body.travelTime,
       price: req.body.price,
       luggage: req.body.luggage,
     });
