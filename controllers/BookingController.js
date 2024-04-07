@@ -45,6 +45,7 @@ const getBooking = async (req, res, next) => {
       .populate("from.city_id", "city province country")
       .populate("to.city_id", "city province country")
       .populate("user_id", "name phone")
+      .populate("ride_id", "rideName")
       .populate("driver");
     if (response) res.status(200).json(response);
     else res.status(400).json({ error: { message: "Data not found" } });
@@ -76,6 +77,7 @@ const getBookings = async (req, res, next) => {
       .populate("from.city_id", "city province country")
       .populate("to.city_id", "city province country")
       .populate("user_id", "name phone")
+      .populate("ride_id", "rideName")
       .populate("driver");
 
     if (response) res.status(200).json(response);
@@ -89,11 +91,13 @@ const getBookings = async (req, res, next) => {
 const getUserBookings = async (req, res, next) => {
   try {
     const response = await Bookings.find({ user_id: req.user.id })
+      .sort({ createdAt: -1 })
       .populate("from.location_id", "city location")
       .populate("to.location_id", "city location")
       .populate("from.city_id", "city province country")
       .populate("to.city_id", "city province country")
       .populate("user_id", "name phone")
+      .populate("ride_id", "rideName")
       .populate("driver");
 
     if (response) res.status(200).json(response);
@@ -122,13 +126,21 @@ const updateDriver = async (req, res, next) => {
 
 const cancelBooking = async (req, res, next) => {
   try {
-    const booking = await Bookings.updateOne(
+    const booking = await Bookings.findOneAndUpdate(
       { _id: req.params.id },
       {
         status: "Cancelled by Admin",
       }
-    );
+    ).populate("user_id", "email");
     if (booking) {
+      const link = "https://heyrides.ca/my-bookings";
+      const mailOptions = {
+        from: "heyrides06@gmail.com",
+        to: booking.user_id.email,
+        subject: "Sorry, booking cancelled",
+        text: `"We regret to inform you that your booking has been cancelled. Please click the link below to view the details: ${link}`,
+      };
+      sendMail(mailOptions);
       res.status(200).json({ message: "Booking cancelled Successfully" });
     }
   } catch (error) {

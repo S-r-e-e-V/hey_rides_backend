@@ -5,9 +5,9 @@ const {
   cityRoute,
   locationRoute,
   bookingRoute,
-  PriceRoute,
   driverRoute,
   contactusRoute,
+  rideRoute,
 } = require("./routes");
 require("dotenv").config();
 const cors = require("cors");
@@ -53,7 +53,7 @@ app.use(express.json());
 app.use("/", authRoute);
 app.use("/city", cityRoute);
 app.use("/location", locationRoute);
-app.use("/price", PriceRoute);
+app.use("/ride", rideRoute);
 app.use("/booking", bookingRoute);
 app.use("/driver", driverRoute);
 app.use("/contactus", contactusRoute);

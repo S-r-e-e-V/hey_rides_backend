@@ -3,6 +3,7 @@ var mongoose = require("mongoose");
 var bookings = new mongoose.Schema(
   {
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+    ride_id: { type: mongoose.Schema.Types.ObjectId, ref: "Rides" },
     from: {
       location_id: { type: mongoose.Schema.Types.ObjectId, ref: "Locations" },
       city_id: { type: mongoose.Schema.Types.ObjectId, ref: "Cities" },
@@ -20,6 +21,14 @@ var bookings = new mongoose.Schema(
     },
     status: { type: String, default: "Pending", required: true },
     ScheduledToTime: { type: Date, required: true },
+    adult: {
+      type: Number,
+      required: true,
+    },
+    luggage: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

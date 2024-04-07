@@ -1,4 +1,4 @@
-const PriceRoute = require("./price");
+const rideRoute = require("./ride");
 const cityRoute = require("./city");
 const locationRoute = require("./location");
 const bookingRoute = require("./booking");
@@ -11,7 +11,7 @@ module.exports = {
   cityRoute,
   locationRoute,
   bookingRoute,
-  PriceRoute,
+  rideRoute,
   driverRoute,
   contactusRoute,
 };
