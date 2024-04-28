@@ -34,8 +34,8 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 const whitelist = [
   "http://localhost:3000",
   "https://heyrides.netlify.app",
-  "www.heyrides.ca",
-  "heyrides.ca",
+  "https://www.heyrides.ca",
+  "https://heyrides.ca",
 ];
 const corsOptions = {
   origin: function (origin, callback) {
